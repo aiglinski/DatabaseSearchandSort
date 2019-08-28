@@ -2,6 +2,7 @@ class UI {
   constructor() {
     this.profile = document.getElementById('profile');
   }
+//   *Show Profile and Profile layout in bootstrap
   showProfile(user){
 this.profile.innerHTML = `
        <div class ="card card-body mb-3">
@@ -41,6 +42,35 @@ this.profile.innerHTML = `
        </div>
      <h3 class = "page-heading mb-3">Latest Repos</h3>
   `};
+
+//   * Show Alert Message
+showAlert(message, className){
+    // *Clear any alerts so they don't build up
+    this.clearAlert();
+    const div = document.createElement('div');
+    // *Add classes
+    div.className = className;
+    // *Add Text
+    div.appendChild(document.createTextNode(message));
+    // *get Parent
+    const container = document.querySelector('.searchContainer');
+    const search = document.querySelector('.search');
+    container.insertBefore(div, search)
+
+    setTimeout(() => {
+        this.clearAlert();
+    }, 3000)
+}
+
+// *Clear Alert message so it doesn't constantly append
+clearAlert(){
+    const currentAlert = document.querySelector('.alert');
+    if(currentAlert){
+        currentAlert.remove();
+    }
+}
+
+// *Clear Profile Display
   clearProfile()
 {this.profile.innerHTML = ''}
 }
